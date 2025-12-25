@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Facebook, Github } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import SocialAuth from "./components/social-auth";
 
 export default function LoginPage() {
   return (
@@ -58,14 +58,8 @@ export default function LoginPage() {
 
           {/* Social Auth  */}
           <div className="grid grid-cols-2 gap-4">
-            <Button variant="outline" className="w-full">
-              <Github className="mr-2 h-4 w-4" />
-              Github
-            </Button>
-            <Button variant="outline" className="w-full">
-              <Facebook className="mr-2 h-4 w-4 fill-current " />
-              Facebook
-            </Button>
+            <SocialAuth provider="github" />
+            <SocialAuth provider="google" />
           </div>
 
           {/* Footer / Legal */}
