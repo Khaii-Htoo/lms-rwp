@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import SocialAuth from "./_components/social-auth";
+import EmailAuth from "./_components/email-auth";
 
 export default function LoginPage() {
   return (
@@ -28,21 +29,7 @@ export default function LoginPage() {
 
         <CardContent className="grid gap-6">
           {/* Email Login Section */}
-          <div className="grid gap-4">
-            <div className="grid gap-2">
-              <Label htmlFor="email">Email Address</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="name@example.com"
-                required
-                autoComplete="email"
-              />
-            </div>
-            <Button type="submit" className="w-full font-medium">
-              Continue with Email
-            </Button>
-          </div>
+          <EmailAuth />
 
           {/* Styled Divider */}
           <div className="relative">

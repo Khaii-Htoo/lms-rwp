@@ -1,7 +1,7 @@
 "use client";
 
+import { signInwithSocial } from "@/actions/auth-action";
 import { Button } from "@/components/ui/button";
-import { signInwithSocial } from "@/lib/auth-client";
 import { Github, Chrome, Loader } from "lucide-react";
 import { useTransition } from "react";
 
@@ -26,7 +26,12 @@ export default function SocialAuth({ provider }: { provider: Provider }) {
   };
 
   return (
-    <Button variant="outline" className="w-full" onClick={handleClick}>
+    <Button
+      variant="outline"
+      className="w-full"
+      onClick={handleClick}
+      disabled={isPending}
+    >
       {isPending ? (
         <Loader className=" animate-spin" />
       ) : (
