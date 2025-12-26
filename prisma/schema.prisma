@@ -19,7 +19,7 @@ model User {
   updatedAt     DateTime  @updatedAt
   sessions      Session[]
   accounts      Account[]
-
+  courses       Course[]
   @@unique([email])
   @@map("user")
 }
@@ -70,4 +70,61 @@ model Verification {
 
   @@index([identifier])
   @@map("verification")
+}
+
+model Course {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  fileKey     String
+  price       Int
+  duration    Int
+  level       String
+  category    String
+  slug        String   @unique
+  status      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+  chapter Chapter[]
+}
+
+
+model Chapter {
+   id String @id @default(uuid())
+   title String
+   position Int
+   createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  Course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseId String
+  lesson Lesson[]
+}
+
+model Lesson{
+   id String @id @default(uuid())
+   title String
+   description String
+   videoUrl String
+   createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+    Chapter Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  chapterId String
+}
+
+model Faq {
+  id String @id  @default(uuid())
+  question String
+  answer String
+}
+
+model Category {
+  id String @id  @default(uuid())
+  title  String
+}
+
+model Level {
+  id String @id  @default(uuid())
+  title  String
 }
